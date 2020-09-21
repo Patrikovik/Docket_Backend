@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html layout:decorate = "~{layout}">
+<head><meta charset="UTF-8"/></head>
+<body>	
+		    	
+	    <section class="layout-content" layout:fragment="corpo">
+	
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <i class="oi oi-caret-right"></i>
+	                        <span>Cadastrar Certidao</span>
+	                    </li>
+	                </ul>
+	                <a class="btn btn-primary btn-md" href="/certidaos/listar" role="button">
+	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+	                    <span>Listar Certidao</span>
+	                </a>
+	            </div>
+	        </nav>
+	        <div class="container" id="cadastro">
+	            <form th:action="@{/relations/salvar}" th:object="${relac}"  method="POST">
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="certidao">Certidão</label>
+			                        <select id="certidao" class="form-control" th:field="*{certidao}">
+			                            <option value="">Selecione</option>
+			                            <option th:each="d : ${certidaos}" 
+			                                    th:value="${d.id}" th:text="${d.nome}">Cert</option>
+			                        </select>
+	                    </div>
+	                </div>
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+	            </form>
+	        </div>
+	    </section>	
+	
+</body>
+</html>
